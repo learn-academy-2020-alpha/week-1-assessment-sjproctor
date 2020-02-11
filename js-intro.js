@@ -10,16 +10,34 @@
 var temp1 = 35
 var temp2 = 350
 var temp3 = 212
-
-
-
+tempChecker = (num) => {
+    if(num === 212){
+        return `${num} is at boiling point`
+    } else if(num > 212){
+        return `${num} is above boiling point`
+    } else if(num < 212){
+        return `${num} is below boiling point`
+    } else {
+        return "error"
+    }
+}
+console.log(tempChecker(temp1))
+console.log(tempChecker(temp2))
+console.log(tempChecker(temp3))
 
 // --------------------2) Create a function that multiplies each number in the array by 5 using a for loop.
 // Use the test variable provided below. Expected outcome: [15, 35, 0, 30, -45]
 
 var myNumbers1 = [3, 7, 0, 6, -9]
 
-
+const mult5 = (array) => {
+    let newArray = []
+    for(let i=0; i<array.length; i++){
+        newArray.push(array[i] * 5)
+    }
+    return newArray
+}
+console.log(mult5(myNumbers1))
 
 
 // --------------------3) Create a function that multiplies each number in the array by 5 using map.
@@ -27,8 +45,10 @@ var myNumbers1 = [3, 7, 0, 6, -9]
 
 var myNumbers2 = [8, -7, 0, 6, 2]
 
-
-
+const mult5Map = (array) => {
+    return array.map(value => value * 5)
+}
+console.log(mult5Map(myNumbers2))
 
 // --------------------4) Create a function that removes all the vowels from a string.
 // Use the test variables provided below. Expected output: "HyThrLrnStdnt" "LvJvScrpt"
@@ -36,8 +56,15 @@ var myNumbers2 = [8, -7, 0, 6, 2]
 var stringWithVowels1 = "HeyThereLearnStudent"
 var stringWithVowels2 = "ILoveJavaScript"
 
-
-
+const noVowels = (string) => {
+    let array = string.split("").filter(value => {
+        let vowelChecker = value.toLowerCase()
+        return vowelChecker !== "a" && vowelChecker !== "e" && vowelChecker !== "i" && vowelChecker !== "o" && vowelChecker !== "u"
+    })
+    return array.join("")
+}
+console.log(noVowels(stringWithVowels1))
+console.log(noVowels(stringWithVowels2))
 
 
 // --------------------5) Expand the logic from #4 to inform your user if the variable passed into the vowel removal function is not a string.
@@ -46,7 +73,20 @@ var stringWithVowels2 = "ILoveJavaScript"
 var notAString1 = true
 var notAString2 = 42
 
-
+const noVowelsPlus = (string) => {
+    if(typeof string === "string"){
+        let array = string.split("").filter(value => {
+            let vowelChecker = value.toLowerCase()
+            return vowelChecker !== "a" && vowelChecker !== "e" && vowelChecker !== "i" && vowelChecker !== "o" && vowelChecker !== "u"
+        })
+        return array.join("")
+    } else {
+        return "Please enter a string"
+    }
+}
+console.log(noVowelsPlus(notAString1))
+console.log(noVowelsPlus(notAString2))
+console.log(noVowelsPlus(stringWithVowels1))
 
 
 // --------------------6) Create a function that takes the toonimals array and returns an array with only the toon objects that are cats.
@@ -55,7 +95,15 @@ var notAString2 = 42
 
 var toonimals = [ {name: "Itchy", animal: "mouse"}, {name: "Stimpy", animal: "cat"}, {name: "Daffy", animal: "duck"}, {name: "Scratchy", animal: "cat"}, {name: "Ren", animal: "dog"}, {name: "Felix", animal: "cat"}]
 
-
-
+const getCats = (array) => {
+    return array.filter(value => value.animal === "cat")
+}
+console.log(getCats(toonimals))
 // --------------------7) Using the toonimals variable from #6, create a function that returns only the names of the non-cats.
 // Expected output: "Itchy" "Daffy" "Ren"
+const getNonCatNames = (array) => {
+    let nonCats = array.filter(value => value.animal !== "cat")
+    let nonCatNames = nonCats.map(value => value.name)
+    return nonCatNames.join(" ")
+}
+console.log(getNonCatNames(toonimals))
